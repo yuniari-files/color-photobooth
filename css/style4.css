@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: #f7ebe1;
+    background-image: 
+        linear-gradient(to right, #e2d3c7 1px, transparent 1px),
+        linear-gradient(to bottom, #e2d3c7 1px, transparent 1px);
+    background-size: 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.main-container {
+    background-color: #ffffff;
+    border: 4px solid #231f32;
+    border-radius: 24px;
+    box-shadow: 8px 8px 0px #231f32;
+    width: 100%;
+    max-width: 850px; /* Diperlebar agar muat 2 strip landscape berdampingan */
+    max-height: 90vh;
+    padding: 70px 30px 30px 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-box {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    border: 4px solid #231f32;
+    border-radius: 12px;
+    padding: 10px 40px;
+    text-align: center;
+    min-width: 340px;
+    z-index: 10;
+}
+
+.header-box h1 { font-size: 24px; color: #231f32; }
+.header-box p { font-size: 12px; color: #ba9ebb; font-weight: bold; }
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 10px;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.frame-option-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    max-width: 320px; /* UBAH: Diperlebar agar proporsi foto landscape-nya pas */
+}
+
+.photobooth-strip {
+    width: 100%;
+    border: 4px solid #231f32;
+    border-radius: 12px;
+    padding: 18px 15px 12px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 5px 5px 0px #231f32;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.theme-pink { background-color: #ffd1dc; }
+.theme-blue { background-color: #d0e8f2; }
+.theme-yellow { background-color: #fff06a; }
+.theme-green { background-color: #75ff79; }
+.theme-purple { background-color: #ed8aff; }
+
+.frame-option-card:hover .photobooth-strip {
+    transform: scale(1.03);
+}
+
+.photos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Mengubah Item Foto Menjadi Landscape */
+.captured-item {
+    width: 100%;
+    aspect-ratio: 4 / 3; 
+    border: 2px solid #231f32;
+    border-radius: 6px;
+    object-fit: fit; /* Memastikan foto mengisi frame landscape dengan rapi dan proporsional */
+    background-color: #fff;
+}
+
+.strip-footer {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #231f32;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+
+.btn-select-theme {
+    background-color: #231f32;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.btn-select-theme:hover {
+    background-color: #ffffff;
+    color: #231f32;
+    border: 3px solid #231f32;
+    padding: 7px 17px;
+}
+
+/* --- RESPONSIF ANDROID UNTUK HALAMAN 4 --- */
+@media screen and (max-width: 600px) {
+    .main-container {
+        width: 95%;
+        max-height: 92vh;
+        padding: 55px 15px 15px 15px;
+    }
+
+    .header-box {
+        min-width: 280px;
+        padding: 8px 15px;
+    }
+
+    .header-box h1 {
+        font-size: 18px;
+    }
+
+    .content-wrapper {
+        flex-direction: column; /* Urutkan strip ke bawah */
+        align-items: center;
+        gap: 30px;
+        padding: 5px;
+    }
+
+    .frame-option-card {
+        width: 100%;
+        max-width: 260px; /* Perkecil skala preview di layar HP agar muat */
+    }
+    
+    .photobooth-strip {
+        padding: 12px 10px 8px 10px; /* Tipiskan border dalam frame */
+        gap: 8px;
+    }
+    
+    .photos-container {
+        gap: 8px;
+    }
+}

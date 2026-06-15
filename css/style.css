@@ -1,0 +1,246 @@
+/* Reset & Base Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4eae1;
+    /* Membuat background pola grid kotak-kotak kecil */
+    background-image: 
+        linear-gradient(to right, #e2d3c7 1px, transparent 1px),
+        linear-gradient(to bottom, #e2d3c7 1px, transparent 1px);
+    background-size: 20px 20px;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* Container Utama */
+.main-container {
+    width: 100%;
+    max-width: 1100px;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Frame Utama (Garis Navy) */
+.outer-frame {
+    width: 100%;
+    border: 4px solid #2d2a4a;
+    border-radius: 16px;
+    background-color: #ffffff;
+    position: relative;
+    padding: 60px 30px 30px 30px;
+    margin-top: 40px;
+    box-shadow: 0px 8px 0px #2d2a4a;
+}
+
+/* Header Badge (Level Three!) */
+.header-badge {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    border: 4px solid #2d2a4a;
+    border-radius: 20px;
+    padding: 10px 45px;
+    text-align: center;
+    box-shadow: 0px 5px 0px #2d2a4a;
+    min-width: 450px;
+}
+
+.title-main {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 2.2rem;
+    color: #2d2a4a;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.title-sub {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    color: #b2a4cc;
+    margin-top: 5px;
+}
+
+/* Grid Layout untuk 3 Bagian Foto */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.2fr;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Side Photo Container & Watermark */
+.photo-side-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.watermark {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    color: #2d2a4a;
+    font-weight: bold;
+}
+
+.text-left {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
+
+.text-right {
+    writing-mode: vertical-lr;
+}
+
+/* Kotak Foto Samping */
+.photo-box {
+    border: 4px solid #2d2a4a;
+    border-radius: 24px;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Bagian Tengah (Wavy & Caption) */
+.photo-center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* Membuat frame bergelombang (Wavy) ala sticker */
+.wavy-frame {
+    width: 190px;
+    height: 190px;
+    background-color: #2d2a4a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Trik border radius bergelombang */
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0px 4px 0px rgba(0,0,0,0.1);
+}
+
+
+/* Efek gerigi/gelombang luar */
+.wavy-frame::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px dashed #ffffff;
+    border-radius: 50%;
+    transform: scale(0.95);
+}
+
+/* Styling untuk Link & Container di dalam Lingkaran */
+.start-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-decoration: none;
+}
+
+/* Overlay Hitam Transparan di Atas Foto */
+.start-btn-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(45, 42, 74, 0.4); /* Efek agak gelap biar teks start kelihatan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Tulisan START bergaya Pixel */
+.start-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    color: #ffffff;
+    background-color: #2d2a4a; /* Warna navy sesuai tema */
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Efek Hover & Tap (Interaktif) */
+.start-link:hover .start-btn-overlay {
+    background-color: rgba(45, 42, 74, 0.6); /* Sedikit lebih gelap saat di-hover */
+}
+
+.start-link:hover .start-text {
+    transform: scale(1.05); /* Sedikit membesar saat kursor di atasnya */
+}
+
+.start-link:active .start-text {
+    transform: scale(0.95); /* Efek mendem ke dalam saat di-tap/klik */
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.wavy-inner {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #2d2a4a;
+    z-index: 2;
+}
+
+.wavy-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Caption Pixel di Tengah Bawah */
+.center-caption {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: #2d2a4a;
+    text-align: center;
+}
+
+/* Responsive biar tetap rapi di layar lebih kecil */
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .header-badge {
+        min-width: 90%;
+        padding: 10px 10px;
+    }
+    .text-left, .text-right {
+        writing-mode: horizontal-tb;
+        transform: none;
+    }
+    .photo-side-container {
+        flex-direction: column;
+    }
+}

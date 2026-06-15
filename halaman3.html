@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuniari Booth - Capturing...</title>
+    <link rel="stylesheet" href="css/style3.css">
+</head>
+<body>
+
+    <div id="flash-effect"></div>
+
+    <div class="main-container">
+        <div class="header-box">
+            <h1>LEVEL THREE!</h1>
+            <p id="status-text">PREPARING CAMERA...</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="camera-frame">
+                <video id="video" autoplay playsinline></video>
+                
+                <div id="countdown-number"></div>
+                
+                <div class="capture-indicator">
+                    <span id="current-index">0</span> / <span id="total-target">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="capture-canvas" style="display:none;"></canvas>
+
+    <script src="js/script3.js"></script>
+</body>
+</html>

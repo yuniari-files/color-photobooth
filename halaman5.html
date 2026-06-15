@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Yuniari Booth - Download Your Photo</title>
+    <link rel="stylesheet" href="css/style5.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Header Atas -->
+        <div class="header-box">
+            <h1>LEVEL THREE!</h1>
+            <p>YOUR MEMORY IS READY</p>
+        </div>
+
+        <!-- Konten Utama: Hasil Akhir Strip Photobooth -->
+        <div class="content-wrapper">
+            <div class="result-container">
+                
+                <!-- Strip Photobooth yang akan dirender secara dinamis -->
+                <div class="photobooth-strip" id="final-strip">
+                    <div class="photos-container" id="photos-stage"></div>
+                    <div class="strip-footer">Yuniari Booth</div>
+                </div>
+
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="action-wrapper">
+                <button id="btn-download" class="btn-action">DOWNLOAD PHOTO</button>
+                <button id="btn-restart" class="btn-action btn-secondary">TAKE ANOTHER PHOTO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Canvas Tersembunyi untuk Proses Penggabungan Gambar -->
+    <canvas id="export-canvas" style="display: none;"></canvas>
+
+    <script src="js/script5.js"></script>
+</body>
+</html>

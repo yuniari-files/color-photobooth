@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: #f7ebe1;
+    background-image: 
+        linear-gradient(to right, #e2d3c7 1px, transparent 1px),
+        linear-gradient(to bottom, #e2d3c7 1px, transparent 1px);
+    background-size: 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.main-container {
+    background-color: #ffffff;
+    border: 4px solid #231f32;
+    border-radius: 24px;
+    box-shadow: 8px 8px 0px #231f32;
+    width: 100%;
+    max-width: 950px; /* Diperlebar sedikit untuk mengakomodasi kotak landscape */
+    padding: 70px 40px 40px 40px;
+    position: relative;
+}
+
+.header-box {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    border: 4px solid #231f32;
+    border-radius: 12px;
+    padding: 10px 40px;
+    text-align: center;
+    min-width: 320px;
+}
+
+.header-box h1 { font-size: 24px; color: #231f32; }
+.header-box p { font-size: 12px; color: #ba9ebb; font-weight: bold; }
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.option-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    max-width: 260px; /* Diperlebar dari 220px agar bentuk landscape-nya terlihat bagus */
+}
+
+/* Frame Diubah Menjadi Khas Landscape 4:3 */
+.frame-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* UBAH: Sekarang melebar (Landscape) */
+    background-color: #fff0f5;
+    border: 3px solid #231f32;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.blank-photo { border-style: dashed; }
+.ratio-text { font-size: 16px; font-weight: bold; color: #231f32; }
+
+.option-card:hover .frame-photo {
+    transform: scale(1.03);
+    background-color: #ffd1dc;
+}
+
+.btn-select {
+    background-color: #231f32;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s ease;
+}
+
+.btn-select:hover {
+    background-color: #ffd1dc;
+    color: #231f32;
+    border: 3px solid #231f32;
+    padding: 7px 21px;
+}
+
+/* --- RESPONSIF ANDROID UNTUK HALAMAN 2 --- */
+@media screen and (max-width: 600px) {
+    .main-container {
+        width: 95%;
+        padding: 60px 15px 20px 15px; /* Kurangi padding biar hemat ruang */
+        margin-top: 50px;
+    }
+
+    .header-box {
+        min-width: 260px;
+        padding: 8px 20px;
+    }
+
+    .header-box h1 {
+        font-size: 18px; /* Perkecil ukuran teks */
+    }
+
+    .content-wrapper {
+        flex-direction: column; /* Kartu pilihan menyusun ke bawah di HP */
+        align-items: center;
+        gap: 20px;
+    }
+
+    .option-card {
+        width: 100%;
+        max-width: 240px; /* Batasi lebar maksimal kotak di layar HP */
+    }
+}

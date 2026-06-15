@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: #f7ebe1;
+    background-image: 
+        linear-gradient(to right, #e2d3c7 1px, transparent 1px),
+        linear-gradient(to bottom, #e2d3c7 1px, transparent 1px);
+    background-size: 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.main-container {
+    background-color: #ffffff;
+    border: 4px solid #231f32;
+    border-radius: 24px;
+    box-shadow: 8px 8px 0px #231f32;
+    width: 100%;
+    max-width: 500px; /* Ukuran kontainer dibuat pas untuk satu strip fokus */
+    max-height: 90vh;
+    padding: 70px 30px 30px 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-box {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    border: 4px solid #231f32;
+    border-radius: 12px;
+    padding: 10px 40px;
+    text-align: center;
+    min-width: 320px;
+    z-index: 10;
+}
+
+.header-box h1 { font-size: 24px; color: #231f32; }
+.header-box p { font-size: 12px; color: #ba9ebb; font-weight: bold; }
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 10px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.result-container {
+    width: 100%;
+    max-width: 300px; /* Lebar strip yang ideal untuk tampilan preview */
+}
+
+/* Base Style Strip Photobooth */
+.photobooth-strip {
+    width: 100%;
+    border: 4px solid #231f32;
+    border-radius: 12px;
+    padding: 18px 15px 12px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 5px 5px 0px #231f32;
+}
+
+/* Warna Latar Belakang Berdasarkan Pilihan Halaman 4 */
+.theme-pink { background-color: #ffd1dc; }
+.theme-blue { background-color: #d0e8f2; }
+.theme-yellow { background-color: #fff06a; }
+.theme-green { background-color: #75ff79; }
+.theme-purple { background-color: #ed8aff; }
+
+.photos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.captured-item {
+    align-self: center;
+    width: 90%;
+    aspect-ratio: 4 / 3; /* Menyesuaikan hasil jepretan landscape */
+    border: 2px solid #231f32;
+    border-radius: 6px;
+    object-fit: fit;
+    background-color: #fff;
+}
+
+.strip-footer {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #231f32;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+
+/* Wrapper Tombol */
+.action-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-action {
+    background-color: #231f32;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+    background-color: #ffd1dc;
+    color: #231f32;
+    border: 3px solid #231f32;
+    padding: 9px 21px;
+}
+
+.btn-secondary {
+    background-color: #ffffff;
+    color: #231f32;
+    border: 3px solid #231f32;
+    padding: 9px 21px;
+}
+
+.btn-secondary:hover {
+    background-color: #231f32;
+    color: #ffffff;
+}
+
+/* --- RESPONSIF ANDROID UNTUK HALAMAN 5 --- */
+@media screen and (max-width: 600px) {
+    .main-container {
+        width: 95%;
+        max-height: 95vh;
+        padding: 55px 15px 15px 15px;
+    }
+
+    .header-box {
+        min-width: 260px;
+        padding: 8px 15px;
+    }
+
+    .header-box h1 {
+        font-size: 18px;
+    }
+
+    .content-wrapper {
+        gap: 15px;
+    }
+
+    .result-container {
+        max-width: 200px; /* Perkecil ukuran preview strip khusus tampilan HP */
+    }
+
+    .photobooth-strip {
+        padding: 12px 10px 8px 10px;
+        gap: 8px;
+    }
+
+    .photos-container {
+        gap: 8px;
+    }
+
+    .btn-action {
+        padding: 10px 20px;
+        font-size: 12px; /* Sesuaikan ukuran tombol agar tidak terlalu bongsor */
+    }
+}
