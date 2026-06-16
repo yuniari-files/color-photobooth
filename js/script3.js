@@ -91,8 +91,10 @@ function runTimer(seconds) {
 // 5. Fungsi Mengambil Gambar dari Video Stream ke Canvas
 // --- UPDATE HANYA PADA FUNGSI CAPTUREIMAGE DI SCRIPT3.JS ---
 
-// --- PERIKSA DAN UPDATE FUNGSI INI DI SCRIPT3.JS ---
+// --- GANTI FULL FUNGSI CAPTUREIMAGE DI SCRIPT3.JS DENGAN INI ---
+
 function captureImage() {
+    // Trigger Animasi Flash Putih
     flashOverlay.classList.remove('animate-flash');
     void flashOverlay.offsetWidth; 
     flashOverlay.classList.add('animate-flash');
@@ -100,19 +102,48 @@ function captureImage() {
     const canvas = document.getElementById('capture-canvas');
     const context = canvas.getContext('2d');
     
-    // UTAMA: Pastikan lebar 800 dan tinggi 600 (Rasio Landscape 4:3)
-    // Jika angka ini terbalik (misal width 600 height 800), gambar PASTI GEPLENG
-    canvas.width = 800;
-    canvas.height = 600;
+    // 1. Tentukan ukuran target file akhir (Murni Landscape 4:3)
+    const targetWidth = 800;
+    const targetHeight = 600;
+    
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
 
-    // Proses pencerminan (mirroring) agar hasil tidak terbalik kanan-kiri
+    // 2. Ambil ukuran asli video yang ditangkap oleh sensor kamera HP
+    const videoWidth = video.videoWidth;
+    const videoHeight = video.videoHeight;
+
+    // 3. Logika Pintar Pemotong Gambar (Cropping): Mencegah Gepeng di Android
+    let sourceX = 0;
+    let sourceY = 0;
+    let sourceWidth = videoWidth;
+    let sourceHeight = videoHeight;
+
+    const videoRatio = videoWidth / videoHeight;
+    const targetRatio = targetWidth / targetHeight;
+
+    if (videoRatio > targetRatio) {
+        // Jika sensor video terlalu lebar, potong bagian kanan-kirinya
+        sourceWidth = videoHeight * targetRatio;
+        sourceX = (videoWidth - sourceWidth) / 2;
+    } else {
+        // Jika sensor video terlalu tegak (kasus Android potret), potong bagian atas-bawahnya
+        sourceHeight = videoWidth / targetRatio;
+        sourceY = (videoHeight - sourceHeight) / 2;
+    }
+
+    // 4. Proses Pencerminan (Mirroring) agar hasil foto tidak terbalik kanan-kiri
     context.translate(canvas.width, 0);
     context.scale(-1, 1);
     
-    // Menggambar data video ke canvas sesuai ukuran landscape murni
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    // 5. Gambar ke canvas menggunakan teknik pemotongan terukur (drawImage 9 argumen)
+    context.drawImage(
+        video, 
+        sourceX, sourceY, sourceWidth, sourceHeight, // Area video asli yang dipotong
+        0, 0, targetWidth, targetHeight              // Area target kanvas landscape
+    );
 
-    // Menyimpan gambar dengan format JPEG ringan
+    // 6. Simpan hasil gambar kompresi ke array dalam bentuk JPEG
     const dataURL = canvas.toDataURL('image/jpeg', 0.7); 
     photos.push(dataURL);
 }
