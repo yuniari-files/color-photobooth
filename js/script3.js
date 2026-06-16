@@ -91,6 +91,7 @@ function runTimer(seconds) {
 // 5. Fungsi Mengambil Gambar dari Video Stream ke Canvas
 // --- UPDATE HANYA PADA FUNGSI CAPTUREIMAGE DI SCRIPT3.JS ---
 
+// --- PERIKSA DAN UPDATE FUNGSI INI DI SCRIPT3.JS ---
 function captureImage() {
     flashOverlay.classList.remove('animate-flash');
     void flashOverlay.offsetWidth; 
@@ -99,18 +100,19 @@ function captureImage() {
     const canvas = document.getElementById('capture-canvas');
     const context = canvas.getContext('2d');
     
-    // Set ukuran kanvas murni landscape 4:3 agar pas dengan stream kamera
+    // UTAMA: Pastikan lebar 800 dan tinggi 600 (Rasio Landscape 4:3)
+    // Jika angka ini terbalik (misal width 600 height 800), gambar PASTI GEPLENG
     canvas.width = 800;
     canvas.height = 600;
 
-    // Proses mirroring hasil foto agar tidak terbalik
+    // Proses pencerminan (mirroring) agar hasil tidak terbalik kanan-kiri
     context.translate(canvas.width, 0);
     context.scale(-1, 1);
     
-    // Menggambar keseluruhan area video secara utuh ke canvas tanpa terpotong
+    // Menggambar data video ke canvas sesuai ukuran landscape murni
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    // Kompresi kualitas gambar agar hemat penyimpanan localStorage
+    // Menyimpan gambar dengan format JPEG ringan
     const dataURL = canvas.toDataURL('image/jpeg', 0.7); 
     photos.push(dataURL);
 }
