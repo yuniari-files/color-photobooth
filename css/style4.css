@@ -96,13 +96,15 @@ body {
     gap: 12px;
 }
 
-/* Mengubah Item Foto Menjadi Landscape */
 .captured-item {
     width: 100%;
-    aspect-ratio: 4 / 3; 
+    aspect-ratio: 4 / 3; /* Memastikan ruang bingkai berbentuk 4:3 */
     border: 2px solid #231f32;
     border-radius: 6px;
-    object-fit: fit; /* Memastikan foto mengisi frame landscape dengan rapi dan proporsional */
+    
+    /* UTAMA: Mengunci proporsi gambar agar tetap estetik dan TIDAK GEPENG */
+    object-fit: cover; 
+    
     background-color: #fff;
 }
 
