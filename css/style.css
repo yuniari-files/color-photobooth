@@ -255,6 +255,36 @@ body {
         font-size: 0.6rem !important; /* Perkecil font sub-header */
     }
 
+    body {
+        position: fixed !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+    }
+
+    .main-container {
+        width: 100% !important;
+        height: 100vh !important; /* Paksa memenuhi tinggi layar pas */
+        max-height: 100vh !important;
+        padding: 10px !important;
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .outer-frame {
+        width: 95% !important;
+        height: auto !important;
+        max-height: 85vh !important; /* Kunci frame putih agar tidak meluber */
+        margin-top: 20px !important; /* Kurangi margin atas agar naik */
+        padding: 40px 10px 15px 10px !important; /* Rapatkan padding dalam */
+        box-shadow: 0px 5px 0px #2d2a4a !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+    
     /* 3. PERBAIKAN UTAMA: Paksa kelas .content-grid aslimu membagi 3 kolom sama rata */
     .content-grid {
         display: grid !important;
