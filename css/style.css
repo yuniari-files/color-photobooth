@@ -174,8 +174,9 @@ video {
 /* ==========================================================
    3. KUNCIAN KHUSUS MOBILE ANDROID (FIT TO SCREEN & ANTI SCROLL)
    ========================================================== */
+/* --- PERBAIKAN TOTAL HALAMAN 1 (ANTI-GEPENG & ANTI-SCROLL DI HP) --- */
 @media screen and (max-width: 600px) {
-    /* MEMBEKUKAN LAYAR HP: Melarang geser/scroll ke bawah */
+    /* 1. Kunci layar HP agar tidak bisa di-scroll sama sekali */
     body {
         position: fixed !important;
         width: 100vw !important;
@@ -183,9 +184,10 @@ video {
         overflow: hidden !important;
     }
 
+    /* 2. Buat container utama memenuhi layar HP secara proporsional */
     .main-container {
         width: 100% !important;
-        height: 100vh !important; 
+        height: 100vh !important;
         max-height: 100vh !important;
         padding: 10px !important;
         margin: 0 !important;
@@ -194,54 +196,97 @@ video {
         justify-content: center !important;
     }
 
+    /* 3. Kembalikan sifat asli frame putih (Hapus Flexbox Pengacau) */
     .outer-frame {
         width: 95% !important;
-        height: auto !important;
-        max-height: 82vh !important; /* Mencegah kotak putih meluber keluar tinggi HP */
-        margin-top: 25px !important; 
-        padding: 40px 12px 15px 12px !important; /* Rapatkan padding dalam */
+        height: 90vh !important; /* Paksa tingginya hampir memenuhi layar HP */
+        max-height: 90vh !important;
+        margin-top: 25px !important;
+        padding: 45px 15px 15px 15px !important; /* Longgarkan padding agar isi mengembang */
         box-shadow: 0px 5px 0px #2d2a4a !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
+        position: relative !important;
+        display: block !important; /* Kembalikan ke display block bawaan */
     }
 
-    /* Perkecil Badge Judul Level Three */
+    /* 4. Perkecil lencana judul LEVEL THREE! */
     .header-badge {
-        min-width: 240px !important;
-        max-width: 270px !important;
+        min-width: 230px !important;
+        max-width: 260px !important;
         padding: 6px 12px !important;
-        top: -30px !important;
+        top: -25px !important;
         box-shadow: 0px 3px 0px #2d2a4a !important;
     }
 
-    .title-main { font-size: 1.3rem !important; }
+    .title-main { font-size: 1.2rem !important; }
     .title-sub { font-size: 0.55rem !important; }
 
+    /* 5. UBAH STRUKTUR GRID: Di HP, susun elemennya dari atas ke bawah secara seimbang */
     .content-grid {
-        margin-top: 10px !important;
-    }
-
-    /* MENYUSUTKAN UKURAN KAMERA LANDSCAPE DI HP AGAR FIT IN */
-    .photo-box {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* Jadikan 1 kolom tunggal ke bawah */
+        grid-template-rows: auto auto auto !important; /* Bagi menjadi 3 baris baris seimbang */
+        gap: 12px !important; /* Beri jarak vertikal antar elemen */
         width: 100% !important;
-        max-width: 100% !important;
-        aspect-ratio: 4 / 3 !important; /* Pertahankan rasio landscape sejati */
-        max-height: 38vh !important;   /* Menjaga tinggi kotak agar tidak memancing scroll otomatis */
+        height: calc(100% - 20px) !important; /* Paksa mengisi penuh ruang frame putih */
+        margin-top: 10px !important;
+        align-items: center !important;
+        justify-items: center !important;
+    }
+
+    /* 6. Atur Foto Kiri (Baris 1) dan Foto Kanan (Baris 3) */
+    .photo-side-container {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .watermark {
+        display: none !important; /* Tetap sembunyikan tulisan vertikal agar hemat tempat */
+    }
+
+    .photo-box {
+        width: 85px !important; /* Sesuaikan ukuran kotak foto landscape kecil di HP */
+        aspect-ratio: 4 / 3 !important; /* Kunci rasio landscape murni */
         border-width: 3px !important;
+        border-radius: 12px !important;
     }
 
-    /* Penyesuaian Skala Angka & Indikator di Android */
-    #countdown-number {
-        font-size: 60px !important;
+    /* 7. Atur Bulatan Tombol START di Tengah (Baris 2) */
+    .photo-center-container {
+        width: 100% !important;
+        gap: 8px !important;
     }
 
-    .center-caption {
-        font-size: 0.6rem !important;
-        padding: 4px 10px !important;
+    /* Perkecil bulatan stiker agar muat di sela-sela foto atas-bawah */
+    .wavy-frame {
+        width: 120px !important;
+        height: 120px !important;
+        min-width: 120px !important;
+        min-height: 120px !important;
+    }
+
+    .wavy-inner {
+        width: 106px !important;
+        height: 106px !important;
+        border-width: 2.5px !important;
+    }
+
+    /* Ketebalan tombol teks START */
+    .start-text {
+        font-size: 0.7rem !important; /* Ukuran teks proporsional */
+        padding: 6px 12px !important;
         border-width: 2px !important;
-        bottom: 10px !important;
-        right: 10px !important;
-        box-shadow: 2px 2px 0px #2d2a4a !important;
+        border-radius: 6px !important;
+    }
+
+    /* 8. Bereskan teks caption agar tidak bertumpukan */
+    .center-caption {
+        font-size: 0.55rem !important;
+        line-height: 1.3 !important;
+        white-space: nowrap !important;
+        width: auto !important;
+        display: block !important;
+        margin-top: 2px !important;
     }
 }
