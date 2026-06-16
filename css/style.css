@@ -218,8 +218,9 @@ body {
 /* ==========================================================
    3. KUNCIAN KHUSUS RESPONSIVE MOBILE HP ANDROID
    ========================================================== */
+/* --- SOLUSI FINAL KUNCIAN GRID HORIZONTAL SEIMBANG DI HP --- */
 @media screen and (max-width: 600px) {
-    /* MEMBEKUKAN LAYAR HP: Anti-scroll ke bawah */
+    /* 1. Kunci layar HP murni agar anti-scroll */
     body {
         position: fixed !important;
         width: 100vw !important;
@@ -231,27 +232,27 @@ body {
         width: 100% !important;
         height: 100vh !important;
         max-height: 100vh !important;
-        padding: 10px !important;
+        padding: 5px !important;
         margin: 0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
     }
 
+    /* 2. Sesuaikan bingkai utama putih agar pas satu layar HP */
     .outer-frame {
         width: 95% !important;
-        height: 90vh !important; /* Paksa tingginya mengisi ruang layar HP */
-        max-height: 90vh !important;
-        margin-top: 25px !important;
-        padding: 45px 15px 15px 15px !important; /* Rapatkan padding */
+        height: auto !important;
+        max-height: 85vh !important;
+        margin-top: 20px !important;
+        padding: 45px 10px 15px 10px !important; /* Rapatkan padding samping */
         box-shadow: 0px 5px 0px #2d2a4a !important;
-        position: relative !important;
         display: block !important;
     }
 
-    /* Skala Badge Atas */
+    /* 3. Perkecil badge atas Level Three! */
     .header-badge {
-        min-width: 230px !important;
+        min-width: 220px !important;
         max-width: 260px !important;
         padding: 6px 12px !important;
         top: -25px !important;
@@ -261,73 +262,78 @@ body {
     .title-main { font-size: 1.2rem !important; }
     .title-sub { font-size: 0.55rem !important; }
 
-    /* MENGUBAH GRID MENJADI VERTIKAL AGAR PROPORSIONAL DI HP */
+    /* 4. PERBAIKAN GRID: Kunci 3 kolom horizontal tetap sejajar dengan pembagian ketat */
     .content-grid {
         display: grid !important;
-        grid-template-columns: 1fr !important; /* Susun 1 kolom tunggal ke bawah */
-        grid-template-rows: auto auto auto !important; /* Bagi rata 3 baris simetris */
-        gap: 12px !important;
-        width: 100% !important;
-        height: calc(100% - 20px) !important;
-        margin-top: 10px !important;
+        grid-template-columns: 1fr 1.1fr 1fr !important; /* Batasi lebar kolom tengah agar foto tidak tertekan */
+        gap: 6px !important; /* Jarak rapat yang aman di HP */
         align-items: center !important;
-        justify-items: center !important;
+        width: 100% !important;
+        margin-top: 25px !important;
     }
 
-    /* Sembunyikan Watermark Vertikal agar ruang foto lega */
+    /* 5. Amankan ruang Foto Samping (Kiri & Kanan) */
     .watermark {
-        display: none !important;
+        display: none !important; /* Sembunyikan tulisan vertikal agar foto bisa melar seimbang */
     }
 
     .photo-side-container {
         width: 100% !important;
+        max-width: 100% !important;
         display: flex !important;
         justify-content: center !important;
-        align-items: center !important;
     }
 
-    /* Ukuran Foto Samping saat Berubah Menjadi Landscape di HP */
+    /* Kunci kotak foto samping agar rasionya tetap potret 3:4 yang manis */
     .photo-box {
-        width: 85px !important;
-        aspect-ratio: 4 / 3 !important; /* Kunci rasio landscape murni */
+        width: 100% !important;
+        max-width: 100% !important;
+        aspect-ratio: 3 / 4 !important;
         border-width: 3px !important;
         border-radius: 12px !important;
     }
 
-    /* Bagian Tengah Tombol Lingkaran */
+    /* 6. Kunci Area Tombol Stiker Tengah (Kolom Kedua) */
     .photo-center-container {
         width: 100% !important;
-        gap: 8px !important;
+        max-width: 100% !important;
+        gap: 6px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
+    /* Susutkan ukuran bulatan stiker tengah agar muat di sela-sela foto HP */
     .wavy-frame {
-        width: 120px !important;
-        height: 120px !important;
-        min-width: 120px !important;
-        min-height: 120px !important;
+        width: 90px !important;
+        height: 90px !important;
+        min-width: 90px !important;
+        min-height: 90px !important;
     }
 
     .wavy-inner {
-        width: 106px !important;
-        height: 106px !important;
-        border-width: 2.5px !important;
-    }
-
-    /* Ukuran Tombol START */
-    .start-text {
-        font-size: 0.7rem !important;
-        padding: 6px 12px !important;
+        width: 78px !important;
+        height: 78px !important;
         border-width: 2px !important;
-        border-radius: 6px !important;
     }
 
-    /* Merapikan Caption Bawah */
-    .center-caption {
+    /* Ukuran tombol teks START di dalam stiker bulatan */
+    .start-text {
         font-size: 0.55rem !important;
-        line-height: 1.3 !important;
+        padding: 5px 8px !important;
+        border-width: 1.5px !important;
+        border-radius: 4px !important;
         white-space: nowrap !important;
-        width: auto !important;
+    }
+
+    /* 7. Amankan teks caption paling bawah agar lurus menyamping */
+    .center-caption {
+        font-size: 0.45rem !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        width: 150% !important; /* Melonggarkan ruang teks melewati kolom tengah */
         display: block !important;
-        margin-top: 2px !important;
+        margin-top: 4px !important;
     }
 }
