@@ -173,7 +173,16 @@ body {
     }
 
     .result-container {
-        max-width: 200px; /* Perkecil ukuran preview strip khusus tampilan HP */
+        width: 100%;
+        max-width: 240px; /* Ukuran preview strip di halaman akhir */
+    }
+
+    .captured-item {
+        width: 100% !important;
+        height: auto !important; /* Mencegah penarikan tinggi secara paksa oleh Android */
+        aspect-ratio: 4 / 3 !important; 
+        object-fit: contain !important; /* Menjaga keaslian pixel gambar */
+        display: block;
     }
 
     .photobooth-strip {
