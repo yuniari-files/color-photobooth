@@ -164,7 +164,15 @@ body {
 
     .frame-option-card {
         width: 100%;
-        max-width: 260px; /* Perkecil skala preview di layar HP agar muat */
+        max-width: 280px; /* Sesuaikan lebar strip di HP */
+    }
+
+    .captured-item {
+        width: 100% !important;
+        height: auto !important; /* Paksa tinggi mengikuti lebar asli gambar */
+        aspect-ratio: 4 / 3 !important; /* Kunci mati rasio landscape */
+        object-fit: contain !important; /* Ubah ke contain agar gambar asli tidak dipaksa melar */
+        display: block;
     }
     
     .photobooth-strip {
