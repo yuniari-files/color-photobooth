@@ -1,8 +1,8 @@
 /* ==========================================================
-   FULL CODE STYLE3.CSS (ANTI-SCROLL & RESPONSIVE LANDSCAPE)
+   FULL CODE STYLE1.CSS (HALAMAN UTAMA - ANTI SCROLL & BALANCE)
    ========================================================== */
 
-/* 1. Reset & Base Setup (Tetap Sesuai Kode Aslimu) */
+/* 1. Reset & Base Setup */
 * {
     margin: 0;
     padding: 0;
@@ -15,6 +15,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #f4eae1;
+    /* Membuat background pola grid kotak-kokak kecil */
     background-image: 
         linear-gradient(to right, #e2d3c7 1px, transparent 1px),
         linear-gradient(to bottom, #e2d3c7 1px, transparent 1px);
@@ -42,7 +43,6 @@ body {
     box-shadow: 0px 8px 0px #2d2a4a;
 }
 
-/* Header Badge (Level Three!) */
 .header-badge {
     position: absolute;
     top: -45px;
@@ -72,112 +72,154 @@ body {
     margin-top: 5px;
 }
 
-/* Grid Layout Pengambil Gambar Kamera (Desktop Mode 4:3 Tunggal) */
 .content-grid {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.2fr;
     align-items: center;
-    width: 100%;
+    gap: 20px;
     margin-top: 20px;
 }
 
-/* Sembunyikan container samping atau watermark yang tidak dipakai di halaman 3 */
-.photo-side-container, .watermark {
-    display: none !important;
-}
-
-/* Area Utama Tempat Video Kamera Berada */
-.photo-center-container {
+.photo-side-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 600px; /* Lebar ideal tampilan landscape di komputer */
-    position: relative;
+    gap: 15px;
 }
 
-/* Mengunci Box Kamera Murni Kebalikan (Landscape 4:3) */
+.watermark {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    color: #2d2a4a;
+    font-weight: bold;
+}
+
+.text-left {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
+
+.text-right {
+    writing-mode: vertical-lr;
+}
+
 .photo-box {
     border: 4px solid #2d2a4a;
     border-radius: 24px;
     overflow: hidden;
     width: 100%;
-    aspect-ratio: 4 / 3; /* AMAN: Mengunci jepretan landscape lebar */
+    aspect-ratio: 3 / 4;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
-    position: relative;
-    background-color: #000;
 }
 
-/* Tampilan Video Stream */
-video {
+.photo-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scaleX(-1); /* Efek Cermin kaca */
 }
 
-/* Countdown Angka Besar Menimpa Video */
-#countdown-number {
+.photo-center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.wavy-frame {
+    width: 190px;
+    height: 190px;
+    background-color: #2d2a4a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0px 4px 0px rgba(0,0,0,0.1);
+}
+
+.wavy-frame::before {
+    content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Press Start 2P', cursive;
-    font-size: 90px;
-    color: #ffffff;
-    text-shadow: 4px 4px 0px #2d2a4a;
-    font-weight: bold;
-    z-index: 10;
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    border: 4px dashed #ffffff;
+    border-radius: 50%;
+    transform: scale(0.95);
 }
 
-/* Teks Indikator Angka (Misal: 1 / 4) */
-.center-caption {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.9rem;
-    color: #ffffff;
-    background-color: #ffd1dc; /* Balutan Pink Booth kesukaanmu */
-    border: 3px solid #2d2a4a;
-    padding: 6px 16px;
-    border-radius: 12px;
+.start-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-decoration: none;
+}
+
+.start-btn-overlay {
     position: absolute;
-    bottom: 15px;
-    right: 15px;
-    z-index: 12;
-    box-shadow: 3px 3px 0px #2d2a4a;
-}
-
-/* Efek Flash Putih Kamera Cekrik */
-#flash-effect {
-    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
-    opacity: 0;
-    z-index: 9999;
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(45, 42, 74, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
 }
 
-.animate-flash {
-    animation: flash-anim 0.4s ease-out;
+.start-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    color: #ffffff;
+    background-color: #2d2a4a;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-@keyframes flash-anim {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
+.start-link:hover .start-btn-overlay {
+    background-color: rgba(45, 42, 74, 0.6);
 }
 
+.start-link:hover .start-text {
+    transform: scale(1.05);
+}
+
+.start-link:active .start-text {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.wavy-inner {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #2d2a4a;
+    z-index: 2;
+}
+
+.wavy-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.center-caption {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: #2d2a4a;
+    text-align: center;
+}
 
 /* ==========================================================
-   3. KUNCIAN KHUSUS MOBILE ANDROID (FIT TO SCREEN & ANTI SCROLL)
+   3. KUNCIAN KHUSUS RESPONSIVE MOBILE HP ANDROID
    ========================================================== */
-/* --- PERBAIKAN TOTAL HALAMAN 1 (ANTI-GEPENG & ANTI-SCROLL DI HP) --- */
-/* --- PERBAIKAN TOTAL HALAMAN 1 (ANTI-GEPENG & ANTI-SCROLL DI HP) --- */
 @media screen and (max-width: 600px) {
-    /* 1. Kunci layar HP agar tidak bisa di-scroll sama sekali */
+    /* MEMBEKUKAN LAYAR HP: Anti-scroll ke bawah */
     body {
         position: fixed !important;
         width: 100vw !important;
@@ -185,7 +227,6 @@ video {
         overflow: hidden !important;
     }
 
-    /* 2. Buat container utama memenuhi layar HP secara proporsional */
     .main-container {
         width: 100% !important;
         height: 100vh !important;
@@ -197,19 +238,18 @@ video {
         justify-content: center !important;
     }
 
-    /* 3. Kembalikan sifat asli frame putih (Hapus Flexbox Pengacau) */
     .outer-frame {
         width: 95% !important;
-        height: 90vh !important; /* Paksa tingginya hampir memenuhi layar HP */
+        height: 90vh !important; /* Paksa tingginya mengisi ruang layar HP */
         max-height: 90vh !important;
         margin-top: 25px !important;
-        padding: 45px 15px 15px 15px !important; /* Longgarkan padding agar isi mengembang */
+        padding: 45px 15px 15px 15px !important; /* Rapatkan padding */
         box-shadow: 0px 5px 0px #2d2a4a !important;
         position: relative !important;
-        display: block !important; /* Kembalikan ke display block bawaan */
+        display: block !important;
     }
 
-    /* 4. Perkecil lencana judul LEVEL THREE! */
+    /* Skala Badge Atas */
     .header-badge {
         min-width: 230px !important;
         max-width: 260px !important;
@@ -221,20 +261,24 @@ video {
     .title-main { font-size: 1.2rem !important; }
     .title-sub { font-size: 0.55rem !important; }
 
-    /* 5. UBAH STRUKTUR GRID: Di HP, susun elemennya dari atas ke bawah secara seimbang */
+    /* MENGUBAH GRID MENJADI VERTIKAL AGAR PROPORSIONAL DI HP */
     .content-grid {
         display: grid !important;
-        grid-template-columns: 1fr !important; /* Jadikan 1 kolom tunggal ke bawah */
-        grid-template-rows: auto auto auto !important; /* Bagi menjadi 3 baris baris seimbang */
-        gap: 12px !important; /* Beri jarak vertikal antar elemen */
+        grid-template-columns: 1fr !important; /* Susun 1 kolom tunggal ke bawah */
+        grid-template-rows: auto auto auto !important; /* Bagi rata 3 baris simetris */
+        gap: 12px !important;
         width: 100% !important;
-        height: calc(100% - 20px) !important; /* Paksa mengisi penuh ruang frame putih */
+        height: calc(100% - 20px) !important;
         margin-top: 10px !important;
         align-items: center !important;
         justify-items: center !important;
     }
 
-    /* 6. Atur Foto Kiri (Baris 1) dan Foto Kanan (Baris 3) */
+    /* Sembunyikan Watermark Vertikal agar ruang foto lega */
+    .watermark {
+        display: none !important;
+    }
+
     .photo-side-container {
         width: 100% !important;
         display: flex !important;
@@ -242,24 +286,20 @@ video {
         align-items: center !important;
     }
 
-    .watermark {
-        display: none !important; /* Tetap sembunyikan tulisan vertikal agar hemat tempat */
-    }
-
+    /* Ukuran Foto Samping saat Berubah Menjadi Landscape di HP */
     .photo-box {
-        width: 85px !important; /* Sesuaikan ukuran kotak foto landscape kecil di HP */
+        width: 85px !important;
         aspect-ratio: 4 / 3 !important; /* Kunci rasio landscape murni */
         border-width: 3px !important;
         border-radius: 12px !important;
     }
 
-    /* 7. Atur Bulatan Tombol START di Tengah (Baris 2) */
+    /* Bagian Tengah Tombol Lingkaran */
     .photo-center-container {
         width: 100% !important;
         gap: 8px !important;
     }
 
-    /* Perkecil bulatan stiker agar muat di sela-sela foto atas-bawah */
     .wavy-frame {
         width: 120px !important;
         height: 120px !important;
@@ -273,15 +313,15 @@ video {
         border-width: 2.5px !important;
     }
 
-    /* Ketebalan tombol teks START */
+    /* Ukuran Tombol START */
     .start-text {
-        font-size: 0.7rem !important; /* Ukuran teks proporsional */
+        font-size: 0.7rem !important;
         padding: 6px 12px !important;
         border-width: 2px !important;
         border-radius: 6px !important;
     }
 
-    /* 8. Bereskan teks caption agar tidak bertumpukan */
+    /* Merapikan Caption Bawah */
     .center-caption {
         font-size: 0.55rem !important;
         line-height: 1.3 !important;
