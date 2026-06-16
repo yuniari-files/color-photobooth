@@ -226,21 +226,99 @@ body {
     text-align: center;
 }
 
-/* Responsive biar tetap rapi di layar lebih kecil */
-@media (max-width: 768px) {
-    .content-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+/* --- SOLUSI ABSOLUT: KUNCIAN GRID 3 KOLOM SEIMBANG DI HP --- */
+/* --- AMANKAN DAN GANTI BLOK INI DI BAGIAN PALING BAWAH STYLE1.CSS --- */
+
+@media screen and (max-width: 600px) {
+    /* 1. Sesuaikan skala container putih utama agar pas di layar Android */
+    .outer-frame {
+        width: 95% !important;
+        margin-top: 50px !important;
+        padding: 45px 10px 20px 10px !important; /* Tipiskan padding samping */
+        box-shadow: 0px 5px 0px #2d2a4a !important;
     }
+
+    /* 2. Perkecil ukuran badge atas "LEVEL THREE!" agar muat di HP */
     .header-badge {
-        min-width: 90%;
-        padding: 10px 10px;
+        min-width: 250px !important;
+        max-width: 280px !important;
+        padding: 6px 15px !important;
+        top: -30px !important;
+        box-shadow: 0px 3px 0px #2d2a4a !important;
     }
-    .text-left, .text-right {
-        writing-mode: horizontal-tb;
-        transform: none;
+
+    .title-main {
+        font-size: 1.3rem !important; /* Perkecil font utama */
     }
+
+    .title-sub {
+        font-size: 0.6rem !important; /* Perkecil font sub-header */
+    }
+
+    /* 3. PERBAIKAN UTAMA: Paksa kelas .content-grid aslimu membagi 3 kolom sama rata */
+    .content-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 1fr !important; /* 3 Kolom simetris murni */
+        gap: 8px !important; /* Jarak rapat yang aman untuk HP */
+        align-items: center !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+    }
+
+    /* 4. Sembunyikan teks watermark vertikal agar tidak menjepit foto di HP */
+    .watermark {
+        display: none !important;
+    }
+
+    /* 5. Paksa kontainer foto samping mengisi penuh kolom grid-nya sendiri */
     .photo-side-container {
-        flex-direction: column;
+        width: 100% !important;
+        display: block !important; /* Matikan flex agar tidak ada gap sisa dari watermark */
+    }
+
+    /* Kunci mati kotak foto samping agar tetap berasio 3:4 potret dan seimbang */
+    .photo-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        aspect-ratio: 3 / 4 !important;
+        border-width: 3px !important; /* Serasikan ketebalan border di HP */
+    }
+
+    /* 6. Kunci kontainer tengah tempat lingkaran START berada */
+    .photo-center-container {
+        width: 100% !important;
+        gap: 10px !important; /* Rapatkan jarak antara bulatan dan caption bawah */
+    }
+
+    /* Perkecil diameter bulatan stiker tengah agar tidak menjajah ruang foto samping */
+    .wavy-frame {
+        width: 85px !important;
+        height: 85px !important;
+        min-width: 85px !important;
+        min-height: 85px !important;
+    }
+
+    .wavy-inner {
+        width: 75px !important;
+        height: 75px !important;
+        border-width: 2px !important;
+    }
+
+    /* 7. Sesuaikan ukuran tombol teks START di dalam lingkaran */
+    .start-text {
+        font-size: 0.55rem !important; /* Perkecil teks agar pas di dalam lingkaran HP */
+        padding: 5px 8px !important;  /* Tipiskan padding tombol */
+        border-width: 1.5px !important;
+        border-radius: 4px !important;
+        box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* 8. Atasi teks caption pixel di bawah lingkaran agar tidak patah berantakan */
+    .center-caption {
+        font-size: 0.45rem !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important; /* Paksa teks memanjang dalam satu baris */
+        width: 150% !important; /* Melonggarkan ruang teks melewati batas kolom tengah */
+        display: block !important;
     }
 }
