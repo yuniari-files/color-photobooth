@@ -175,6 +175,7 @@ video {
    3. KUNCIAN KHUSUS MOBILE ANDROID (FIT TO SCREEN & ANTI SCROLL)
    ========================================================== */
 /* --- PERBAIKAN TOTAL HALAMAN 1 (ANTI-GEPENG & ANTI-SCROLL DI HP) --- */
+/* --- PERBAIKAN TOTAL HALAMAN 1 (ANTI-GEPENG & ANTI-SCROLL DI HP) --- */
 @media screen and (max-width: 600px) {
     /* 1. Kunci layar HP agar tidak bisa di-scroll sama sekali */
     body {
