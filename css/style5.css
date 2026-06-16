@@ -90,12 +90,14 @@ body {
 }
 
 .captured-item {
-    align-self: center;
-    width: 90%;
-    aspect-ratio: 4 / 3; /* Menyesuaikan hasil jepretan landscape */
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Memastikan ruang bingkai berbentuk 4:3 */
     border: 2px solid #231f32;
     border-radius: 6px;
-    object-fit: fit;
+    
+    /* UTAMA: Mengunci proporsi gambar agar tetap estetik dan TIDAK GEPENG */
+    object-fit: cover; 
+    
     background-color: #fff;
 }
 
