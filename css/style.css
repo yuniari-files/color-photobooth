@@ -215,10 +215,7 @@ body {
     text-align: center;
 }
 
-/* ==========================================================
-   3. KUNCIAN KHUSUS RESPONSIVE MOBILE HP ANDROID
-   ========================================================== */
-/* --- SOLUSI FINAL KUNCIAN GRID HORIZONTAL SEIMBANG DI HP --- */
+/* --- KUNCIAN GRID MOBILE ABSOLUT (GARANSI HORIZONTAL HORIZONTAL) --- */
 @media screen and (max-width: 600px) {
     /* 1. Kunci layar HP murni agar anti-scroll */
     body {
@@ -245,7 +242,7 @@ body {
         height: auto !important;
         max-height: 85vh !important;
         margin-top: 20px !important;
-        padding: 45px 10px 15px 10px !important; /* Rapatkan padding samping */
+        padding: 45px 8px 15px 8px !important; 
         box-shadow: 0px 5px 0px #2d2a4a !important;
         display: block !important;
     }
@@ -262,19 +259,20 @@ body {
     .title-main { font-size: 1.2rem !important; }
     .title-sub { font-size: 0.55rem !important; }
 
-    /* 4. PERBAIKAN GRID: Kunci 3 kolom horizontal tetap sejajar dengan pembagian ketat */
+    /* 4. UTAMA: Gembok paksa susunan 3 kolom menyamping di HP */
     .content-grid {
         display: grid !important;
-        grid-template-columns: 1fr 1.1fr 1fr !important; /* Batasi lebar kolom tengah agar foto tidak tertekan */
-        gap: 6px !important; /* Jarak rapat yang aman di HP */
+        grid-template-columns: 1fr 1.2fr 1fr !important; /* Bagi ruang: Foto - Tombol - Foto */
+        gap: 8px !important; 
         align-items: center !important;
+        justify-content: center !important;
         width: 100% !important;
         margin-top: 25px !important;
     }
 
-    /* 5. Amankan ruang Foto Samping (Kiri & Kanan) */
+    /* 5. Bereskan pembungkus foto samping (Kiri & Kanan) */
     .watermark {
-        display: none !important; /* Sembunyikan tulisan vertikal agar foto bisa melar seimbang */
+        display: none !important; /* Buang watermark teks vertikal agar tidak makan tempat di HP */
     }
 
     .photo-side-container {
@@ -282,18 +280,21 @@ body {
         max-width: 100% !important;
         display: flex !important;
         justify-content: center !important;
+        align-items: center !important;
+        gap: 0 !important; /* Hapus sisa sela watermark */
     }
 
-    /* Kunci kotak foto samping agar rasionya tetap potret 3:4 yang manis */
+    /* Paksa kotak foto samping mengecil proporsional mengikuti lebar kolom grid */
     .photo-box {
         width: 100% !important;
         max-width: 100% !important;
-        aspect-ratio: 3 / 4 !important;
+        height: auto !important;
+        aspect-ratio: 3 / 4 !important; /* Jaga agar bentuknya tetap potret estetik */
         border-width: 3px !important;
         border-radius: 12px !important;
     }
 
-    /* 6. Kunci Area Tombol Stiker Tengah (Kolom Kedua) */
+    /* 6. Bereskan area stiker tombol tengah */
     .photo-center-container {
         width: 100% !important;
         max-width: 100% !important;
@@ -304,21 +305,21 @@ body {
         justify-content: center !important;
     }
 
-    /* Susutkan ukuran bulatan stiker tengah agar muat di sela-sela foto HP */
+    /* Perkecil bulatan stiker tengah agar tidak menekan foto kanan-kiri */
     .wavy-frame {
-        width: 90px !important;
-        height: 90px !important;
-        min-width: 90px !important;
-        min-height: 90px !important;
+        width: 100px !important;
+        height: 100px !important;
+        min-width: 100px !important;
+        min-height: 100px !important;
     }
 
     .wavy-inner {
-        width: 78px !important;
-        height: 78px !important;
+        width: 86px !important;
+        height: 86px !important;
         border-width: 2px !important;
     }
 
-    /* Ukuran tombol teks START di dalam stiker bulatan */
+    /* Perkecil teks START di dalam bulatan */
     .start-text {
         font-size: 0.55rem !important;
         padding: 5px 8px !important;
@@ -327,12 +328,12 @@ body {
         white-space: nowrap !important;
     }
 
-    /* 7. Amankan teks caption paling bawah agar lurus menyamping */
+    /* 7. Amankan caption text paling bawah agar lurus satu baris */
     .center-caption {
         font-size: 0.45rem !important;
         line-height: 1.2 !important;
         white-space: nowrap !important;
-        width: 150% !important; /* Melonggarkan ruang teks melewati kolom tengah */
+        width: 140% !important; /* Longgarkan batas teks agar melebar ke kanan-kiri */
         display: block !important;
         margin-top: 4px !important;
     }
